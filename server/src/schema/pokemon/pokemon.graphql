@@ -1,0 +1,9 @@
+# this is some simple dummy schema to prevent empty content errors
+type Pokemon {
+  id: ID!
+  name: String!
+}
+
+extend type Query {
+  pokemons: [Pokemon!]!
+}
