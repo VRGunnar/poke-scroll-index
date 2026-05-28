@@ -1,9 +1,14 @@
-# this is some simple dummy schema to prevent empty content errors
 type Pokemon {
-  id: ID!
+  id: Int!
   name: String!
+  image: String
+  types: [String!]!
+  abilities: [String!]!
+  height: Int
+  weight: Int
 }
 
-extend type Query {
-  pokemons: [Pokemon!]!
+type Query {
+  randomPokemon: Pokemon!
+  pokemon(id: Int!): Pokemon
 }

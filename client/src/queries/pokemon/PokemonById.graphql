@@ -1,0 +1,5 @@
+query PokemonById($id: Int!) {
+  pokemon(id: $id) {
+    ...PokemonFields
+  }
+}

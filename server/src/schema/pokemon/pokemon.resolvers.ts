@@ -1,10 +1,25 @@
-export const resolvers = {
-  // this is some simple dummy resolver to prevent empty content errors
+import { Pokemon } from "../../datasources/pokemon";
+
+const resolvers = {
   Query: {
-    pokemons: () => [
-      { id: "1", name: "Bulbasaur" },
-      { id: "2", name: "Charmander" },
-      { id: "3", name: "Squirtle" },
-    ],
+    randomPokemon: async (_: any, __: any, { dataSources }: ApolloContext) =>
+      await dataSources.pokemon.getRandomPokemon(),
+    pokemon: async (
+      _: any,
+      { id }: { id: number },
+      { dataSources }: ApolloContext,
+    ) => await dataSources.pokemon.getPokemon(id),
+  },
+
+  Pokemon: {
+    image: (parent: Pokemon) =>
+      parent.sprites?.other?.["official-artwork"]?.front_default ?? null,
+    types: (parent: Pokemon) => parent.types?.map((t) => t.type.name) ?? [],
+    abilities: (parent: Pokemon) =>
+      parent.abilities?.map((a) => a.ability.name) ?? [],
+    // maybe add gifs later? Worth experimenting with
+    // maybe add cries too
   },
 };
+
+export default resolvers;
