@@ -1,3 +1,4 @@
+import { PokemonDataSource } from "../datasources/pokemon";
 declare global {
   /**
    * Now declare things that go in the global namespace,
@@ -7,7 +8,7 @@ declare global {
   interface ApolloContext {
     token?: string | string[];
     dataSources: {
-      // add data sources here, this will be only to gather our pokemon data
+      pokemon: PokemonDataSource;
     };
   }
 }

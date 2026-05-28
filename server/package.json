@@ -14,9 +14,11 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@apollo/datasource-rest": "^6.4.1",
     "@apollo/server": "^5.5.1",
     "@as-integrations/express5": "^1.1.2",
     "@graphql-tools/load-files": "^7.0.1",
+    "axios": "^1.16.1",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "graphql": "^16.14.0"

@@ -5,6 +5,7 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@as-integrations/express5";
 import { loadFiles } from "@graphql-tools/load-files";
 import { ApolloServerPluginCacheControl } from "@apollo/server/plugin/cacheControl";
+import { PokemonDataSource } from "./datasources/pokemon";
 
 async function startServer() {
   const app = express();
@@ -15,9 +16,7 @@ async function startServer() {
   const server = new ApolloServer<ApolloContext>({
     typeDefs: await loadFiles(`${__dirname}/**/*.graphql`),
     resolvers: await loadFiles(`${__dirname}/**/*.resolvers.{ts,js}`),
-    plugins: [
-      ApolloServerPluginCacheControl({ defaultMaxAge: 60 }),
-    ],
+    plugins: [ApolloServerPluginCacheControl({ defaultMaxAge: 60 })],
     introspection: true,
   });
 
@@ -32,7 +31,7 @@ async function startServer() {
         return {
           token: req.headers.token,
           dataSources: {
-            // persist datasources here, to access them later in resolvers
+            pokemon: new PokemonDataSource(),
           },
         };
       },
