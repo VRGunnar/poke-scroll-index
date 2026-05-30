@@ -174,11 +174,10 @@ export function PokemonCard() {
     let loaderTimeout: number | null = null;
     if (loading) {
       loaderTimeout = window.setTimeout(() => setShowLoader(true), 150);
-    } else {
-      setShowLoader(false);
     }
     return () => {
       if (loaderTimeout != null) window.clearTimeout(loaderTimeout);
+      setShowLoader(false);
     };
   }, [loading]);
 
