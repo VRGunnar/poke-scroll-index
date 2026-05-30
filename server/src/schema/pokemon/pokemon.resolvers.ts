@@ -14,11 +14,24 @@ const resolvers = {
   Pokemon: {
     image: (parent: Pokemon) =>
       parent.sprites?.other?.["official-artwork"]?.front_default ?? null,
+    cryLatest: (parent: Pokemon) => parent.cries?.latest ?? null,
+    cryLegacy: (parent: Pokemon) => parent.cries?.legacy ?? null,
+    spriteDefault: (parent: Pokemon) => parent.sprites?.front_default ?? null,
+    spriteShiny: (parent: Pokemon) => parent.sprites?.front_shiny ?? null,
+    spriteArtwork: (parent: Pokemon) =>
+      parent.sprites?.other?.["official-artwork"]?.front_default ?? null,
+    spriteArtworkShiny: (parent: Pokemon) =>
+      parent.sprites?.other?.["official-artwork"]?.front_shiny ?? null,
+    spriteShowdown: (parent: Pokemon) =>
+      parent.sprites?.other?.showdown?.front_default ?? null,
+    spriteShowdownShiny: (parent: Pokemon) =>
+      parent.sprites?.other?.showdown?.front_shiny ?? null,
     types: (parent: Pokemon) => parent.types?.map((t) => t.type.name) ?? [],
     abilities: (parent: Pokemon) =>
       parent.abilities?.map((a) => a.ability.name) ?? [],
-    // maybe add gifs later? Worth experimenting with
-    // maybe add cries too
+    stats: (parent: Pokemon) =>
+      parent.stats?.map((s) => ({ name: s.stat.name, value: s.base_stat })) ??
+      [],
   },
 };
 

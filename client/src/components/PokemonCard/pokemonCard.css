@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap");
+
+.explorer-root {
+  --explorer-accent: #ff3b3b;
+  --explorer-glow: #ff3b3b88;
+  --explorer-ring: #ff3b3b66;
+  font-family: "Exo 2", sans-serif;
+  background: radial-gradient(circle at 50% -20%, #232536 0%, #0a0a12 58%);
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  min-width: 100%;
+  border-radius: 0;
+  padding: calc(env(safe-area-inset-top, 0px) + 1.8rem)
+    calc(env(safe-area-inset-right, 0px) + 1rem)
+    calc(env(safe-area-inset-bottom, 0px) + 1rem)
+    calc(env(safe-area-inset-left, 0px) + 1rem);
+}
+
+.explorer-orbitron {
+  font-family: "Orbitron", monospace;
+}
+
+.explorer-hint-bar {
+  background: linear-gradient(90deg, #ff3b3b22, #ff3b3b44, #ff3b3b22);
+  border-bottom: 1px solid #ff3b3b55;
+}
+
+.explorer-mode-pill {
+  border: 1px solid #ffffff20;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 20% 20%, #ffffff1a 0%, transparent 45%),
+    linear-gradient(90deg, #00000044, #ffffff10, #00000044);
+  box-shadow:
+    0 0 0 1px #00000033 inset,
+    0 8px 24px #00000055;
+  backdrop-filter: blur(6px);
+}
+
+.explorer-dex-id {
+  color: var(--explorer-accent);
+  letter-spacing: 0.28em;
+}
+
+.explorer-type-badge {
+  font-family: "Orbitron", monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.16em;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-weight: 700;
+}
+
+.explorer-image-stage {
+  width: 200px;
+  height: 200px;
+}
+
+@media (max-width: 768px) {
+  .explorer-root {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.8rem);
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.6rem);
+  }
+
+  .explorer-image-stage {
+    width: min(42vw, 160px);
+    height: min(42vw, 160px);
+  }
+
+  .explorer-type-badge {
+    font-size: 0.52rem;
+    padding: 0.24rem 0.55rem;
+  }
+
+  .explorer-stat-card {
+    padding: 8px 10px;
+  }
+
+  .explorer-stat-value {
+    font-size: 0.9rem;
+  }
+
+  .explorer-mode-pill {
+    box-shadow:
+      0 0 0 1px #0000002b inset,
+      0 6px 16px #00000044;
+  }
+}
+
+.explorer-glow {
+  background: radial-gradient(circle, var(--explorer-glow) 0%, transparent 70%);
+  animation: explorer-pulse-glow 2s ease-in-out infinite;
+}
+
+.explorer-ring {
+  border: 1px solid var(--explorer-ring);
+  animation: explorer-spin-ring 8s linear infinite;
+}
+
+.explorer-ring::before {
+  content: "";
+  position: absolute;
+  top: -3.5px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: var(--explorer-accent);
+}
+
+.explorer-pokemon-image {
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 20px var(--explorer-glow));
+  animation: explorer-float 3s ease-in-out infinite;
+}
+
+.explorer-name {
+  background: linear-gradient(135deg, #ffffff 30%, var(--explorer-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.explorer-stat-card {
+  background: #ffffff08;
+  border: 1px solid #ffffff14;
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-align: center;
+}
+
+.explorer-stat-label {
+  font-size: 0.56rem;
+  letter-spacing: 0.16em;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.explorer-stat-value {
+  font-family: "Orbitron", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.explorer-nav-button {
+  font-family: "Orbitron", monospace;
+  letter-spacing: 0.16em;
+}
+
+.explorer-slide-in {
+  animation: explorer-slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.explorer-fade-in {
+  animation: explorer-fade-in 0.35s ease both;
+}
+
+.explorer-arrow {
+  animation: explorer-arrow-bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes explorer-pulse-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes explorer-spin-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes explorer-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes explorer-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes explorer-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes explorer-arrow-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explorer-glow,
+  .explorer-ring,
+  .explorer-pokemon-image,
+  .explorer-slide-in,
+  .explorer-fade-in,
+  .explorer-arrow {
+    animation: none !important;
+  }
+}

@@ -2,10 +2,24 @@ type Pokemon {
   id: Int!
   name: String!
   image: String
+  cryLatest: String
+  cryLegacy: String
+  spriteDefault: String
+  spriteShiny: String
+  spriteArtwork: String
+  spriteArtworkShiny: String
+  spriteShowdown: String
+  spriteShowdownShiny: String
   types: [String!]!
   abilities: [String!]!
   height: Int
   weight: Int
+  stats: [PokemonStat!]!
+}
+
+type PokemonStat {
+  name: String!
+  value: Int!
 }
 
 type Query {
