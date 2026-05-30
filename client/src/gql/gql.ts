@@ -14,14 +14,14 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "query RandomPokemon {\n  randomPokemon {\n    ...PokemonFields\n  }\n}": typeof types.RandomPokemonDocument,
-    "fragment PokemonFields on Pokemon {\n  id\n  name\n  image\n  types\n  abilities\n  height\n  weight\n}": typeof types.PokemonFieldsFragmentDoc,
+    "fragment PokemonFields on Pokemon {\n  id\n  name\n  image\n  cryLatest\n  cryLegacy\n  spriteDefault\n  spriteShiny\n  spriteArtwork\n  spriteArtworkShiny\n  spriteShowdown\n  spriteShowdownShiny\n  types\n  abilities\n  height\n  weight\n  stats {\n    name\n    value\n  }\n}": typeof types.PokemonFieldsFragmentDoc,
     "query PokemonById($id: Int!) {\n  pokemon(id: $id) {\n    ...PokemonFields\n  }\n}": typeof types.PokemonByIdDocument,
+    "query RandomPokemon {\n  randomPokemon {\n    ...PokemonFields\n  }\n}": typeof types.RandomPokemonDocument,
 };
 const documents: Documents = {
-    "query RandomPokemon {\n  randomPokemon {\n    ...PokemonFields\n  }\n}": types.RandomPokemonDocument,
-    "fragment PokemonFields on Pokemon {\n  id\n  name\n  image\n  types\n  abilities\n  height\n  weight\n}": types.PokemonFieldsFragmentDoc,
+    "fragment PokemonFields on Pokemon {\n  id\n  name\n  image\n  cryLatest\n  cryLegacy\n  spriteDefault\n  spriteShiny\n  spriteArtwork\n  spriteArtworkShiny\n  spriteShowdown\n  spriteShowdownShiny\n  types\n  abilities\n  height\n  weight\n  stats {\n    name\n    value\n  }\n}": types.PokemonFieldsFragmentDoc,
     "query PokemonById($id: Int!) {\n  pokemon(id: $id) {\n    ...PokemonFields\n  }\n}": types.PokemonByIdDocument,
+    "query RandomPokemon {\n  randomPokemon {\n    ...PokemonFields\n  }\n}": types.RandomPokemonDocument,
 };
 
 /**
@@ -41,15 +41,15 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "query RandomPokemon {\n  randomPokemon {\n    ...PokemonFields\n  }\n}"): (typeof documents)["query RandomPokemon {\n  randomPokemon {\n    ...PokemonFields\n  }\n}"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "fragment PokemonFields on Pokemon {\n  id\n  name\n  image\n  types\n  abilities\n  height\n  weight\n}"): (typeof documents)["fragment PokemonFields on Pokemon {\n  id\n  name\n  image\n  types\n  abilities\n  height\n  weight\n}"];
+export function gql(source: "fragment PokemonFields on Pokemon {\n  id\n  name\n  image\n  cryLatest\n  cryLegacy\n  spriteDefault\n  spriteShiny\n  spriteArtwork\n  spriteArtworkShiny\n  spriteShowdown\n  spriteShowdownShiny\n  types\n  abilities\n  height\n  weight\n  stats {\n    name\n    value\n  }\n}"): (typeof documents)["fragment PokemonFields on Pokemon {\n  id\n  name\n  image\n  cryLatest\n  cryLegacy\n  spriteDefault\n  spriteShiny\n  spriteArtwork\n  spriteArtworkShiny\n  spriteShowdown\n  spriteShowdownShiny\n  types\n  abilities\n  height\n  weight\n  stats {\n    name\n    value\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "query PokemonById($id: Int!) {\n  pokemon(id: $id) {\n    ...PokemonFields\n  }\n}"): (typeof documents)["query PokemonById($id: Int!) {\n  pokemon(id: $id) {\n    ...PokemonFields\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "query RandomPokemon {\n  randomPokemon {\n    ...PokemonFields\n  }\n}"): (typeof documents)["query RandomPokemon {\n  randomPokemon {\n    ...PokemonFields\n  }\n}"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

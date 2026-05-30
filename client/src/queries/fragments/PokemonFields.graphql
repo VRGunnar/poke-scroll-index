@@ -2,8 +2,20 @@ fragment PokemonFields on Pokemon {
   id
   name
   image
+  cryLatest
+  cryLegacy
+  spriteDefault
+  spriteShiny
+  spriteArtwork
+  spriteArtworkShiny
+  spriteShowdown
+  spriteShowdownShiny
   types
   abilities
   height
   weight
+  stats {
+    name
+    value
+  }
 }
