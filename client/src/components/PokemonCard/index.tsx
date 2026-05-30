@@ -11,6 +11,7 @@ import { getPokemonSprite } from "./pokemonSpriteUtils";
 import { PokemonMetricsPanel } from "./PokemonMetricsPanel";
 import { PokemonSprite } from "./PokemonSprite";
 import { Button } from "./Button";
+import { Loader } from "./Loader";
 import { useLazyQuery } from "@apollo/client/react";
 import { useFragment, type FragmentType } from "../../gql";
 import {
@@ -35,6 +36,8 @@ type HistoryState = {
 };
 
 export function PokemonCard() {
+  // Delayed loader state to avoid flashing for fast loads
+  const [showLoader, setShowLoader] = useState(false);
   const [pokemonRef, setPokemonRef] = useState<FragmentType<
     typeof PokemonFieldsFragmentDoc
   > | null>(null);
@@ -166,6 +169,19 @@ export function PokemonCard() {
     await fetchAndRender(randomPokemonId());
   }, [fetchAndRender, loading]);
 
+  // Show loader with delay to avoid flash
+  useEffect(() => {
+    let loaderTimeout: number | null = null;
+    if (loading) {
+      loaderTimeout = window.setTimeout(() => setShowLoader(true), 150);
+    } else {
+      setShowLoader(false);
+    }
+    return () => {
+      if (loaderTimeout != null) window.clearTimeout(loaderTimeout);
+    };
+  }, [loading]);
+
   useEffect(() => {
     const timer = window.setTimeout(() => {
       void fetchAndRender(randomPokemonId());
@@ -256,6 +272,7 @@ export function PokemonCard() {
           Pokedex - Scroll wheel or buttons to explore
         </div>
 
+        {/* Always render card; overlay loader if loading */}
         {pokemon && (
           <>
             <div className="explorer-mode-pill explorer-orbitron relative z-20 mb-3 px-3 sm:px-4 py-2 w-full max-w-104 flex items-start justify-between gap-3 uppercase">
@@ -329,6 +346,16 @@ export function PokemonCard() {
               stats={pokemon.stats}
               accentColor={palette.accent}
             />
+
+            {/* Loader overlay */}
+            {showLoader && (
+              <div
+                className="absolute inset-0 z-50 flex items-center justify-center bg-[#05050bcc] pointer-events-auto transition-opacity duration-200 opacity-100"
+                style={{ animation: loading ? "fadeIn 0.2s" : "fadeOut 0.2s" }}
+              >
+                <Loader loading={loading} />
+              </div>
+            )}
           </>
         )}
 
